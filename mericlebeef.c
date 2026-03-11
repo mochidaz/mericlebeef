@@ -116,22 +116,20 @@ mericlebeef_is_active(void) {
     return active;
 }
 
-static int
-mericlebeef_action_custom(DB_plugin_action_t *action, int ctx) {
+static int mericlebeef_action_custom(DB_plugin_action_t *action, ddb_action_context_t ctx) {
     int custom_mins = deadbeef->conf_get_int("mericlebeef.custom_minutes", 45);
     mericlebeef_start(custom_mins);
     return 0;
 }
 
-static int mericlebeef_action_1min(DB_plugin_action_t *action, int ctx) { mericlebeef_start(1); return 0; }
-static int mericlebeef_action_15min(DB_plugin_action_t *action, int ctx) { mericlebeef_start(15); return 0; }
-static int mericlebeef_action_30min(DB_plugin_action_t *action, int ctx) { mericlebeef_start(30); return 0; }
-static int mericlebeef_action_60min(DB_plugin_action_t *action, int ctx) { mericlebeef_start(60); return 0; }
-static int mericlebeef_action_90min(DB_plugin_action_t *action, int ctx) { mericlebeef_start(90); return 0; }
-static int mericlebeef_action_cancel(DB_plugin_action_t *action, int ctx) { mericlebeef_cancel(); return 0; }
+static int mericlebeef_action_1min(DB_plugin_action_t *action, ddb_action_context_t ctx) { mericlebeef_start(1); return 0; }
+static int mericlebeef_action_15min(DB_plugin_action_t *action, ddb_action_context_t ctx) { mericlebeef_start(15); return 0; }
+static int mericlebeef_action_30min(DB_plugin_action_t *action, ddb_action_context_t ctx) { mericlebeef_start(30); return 0; }
+static int mericlebeef_action_60min(DB_plugin_action_t *action, ddb_action_context_t ctx) { mericlebeef_start(60); return 0; }
+static int mericlebeef_action_90min(DB_plugin_action_t *action, ddb_action_context_t ctx) { mericlebeef_start(90); return 0; }
+static int mericlebeef_action_cancel(DB_plugin_action_t *action, ddb_action_context_t ctx) { mericlebeef_cancel(); return 0; }
 
-static int
-mericlebeef_action_status(DB_plugin_action_t *action, int ctx) {
+static int mericlebeef_action_status(DB_plugin_action_t *action, ddb_action_context_t ctx) {
     if (mericlebeef_is_active()) {
         int remaining = mericlebeef_get_remaining();
         int minutes = remaining / 60;
